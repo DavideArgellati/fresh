@@ -56,8 +56,8 @@ func TestIsIgnoredFolder(t *testing.T) {
 	}{
 		{"assets", true},
 		{"path/assets", true},
-		//parent will be ignored and watcher will skip subfolders, but here will be false
-		{"assets/pid", false},
+		{"assets/anotherfolder", true},
+		{"tmp/pid", true},
 		{"app/controllers", false},
 	}
 
