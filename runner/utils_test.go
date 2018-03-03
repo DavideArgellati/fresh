@@ -54,15 +54,17 @@ func TestIsIgnoredFolder(t *testing.T) {
 		dir      string
 		expected bool
 	}{
-		{"assets/node_modules", true},
-		{"tmp/pid", true},
+		{"assets", true},
+		{"path/assets", true},
+		//parent will be ignored and watcher will skip subfolders, but here will be false
+		{"assets/pid", false},
 		{"app/controllers", false},
 	}
 
 	for _, test := range tests {
 		actual := isIgnoredFolder(test.dir)
 		if actual != test.expected {
-			t.Errorf("Expected %v, got %v", test.expected, actual)
+			t.Errorf("%s Expected %v, got %v",test.dir, test.expected, actual)
 		}
 	}
 }
